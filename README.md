@@ -14,8 +14,11 @@ Putting certificate files in your docker container are a security risk. If the c
 		RSABits(4096),
 		ValidFor(365*24*time.Hour),
 	)
+	if err != nil {
+		log.Fatal(err)
+	}
 
-    log.Println("fingerprint", result.Fingerprint)
+	log.Println("fingerprint", result.Fingerprint)
 
 	cert, err := tls.X509KeyPair(result.PublicCert, result.PrivateKey)
 	if err != nil {
